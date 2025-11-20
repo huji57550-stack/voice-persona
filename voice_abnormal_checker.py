@@ -12,6 +12,82 @@ import numpy as np
 import librosa
 import streamlit as st
 
+# ========= カスタムCSS =========
+CUTE_CSS = """
+<style>
+/* Google Fonts：かっちり × 柔らかの中間 */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap');
+
+/* 背景（淡いミント） */
+.stApp {
+    background-color: #E6F6EE;
+}
+
+/* h1（タイトル）＝しっかり、上品、でも硬すぎない */
+h1 {
+    font-family: 'Shippori Antique B1', sans-serif !important;
+    color: #2F6F63 !important;
+    font-weight: 700;
+    font-size: 2.1rem;
+    letter-spacing: 0.02em;
+}
+
+/* h2（大見出し） */
+h2 {
+    font-family: 'Shippori Antique B1', sans-serif !important;
+    color: #3D8578 !important;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+/* h3（小見出し） */
+h3 {
+    font-family: 'Shippori Antique B1', sans-serif !important;
+    color: #4FA694 !important;
+    font-weight: 500;
+    font-size: 1.35rem;
+}
+
+/* 本文・説明・ラベル */
+p, div, label, span {
+    font-family: 'Zen Kaku Gothic New', sans-serif !important;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* ボタン */
+button, .stButton>button {
+    background-color: #76C7AF !important;
+    color: white !important;
+    border-radius: 10px !important;
+    padding: 0.55rem 1.3rem;
+    font-family: 'Shippori Antique B1', sans-serif !important;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+}
+
+/* ボタンHover */
+.stButton>button:hover {
+    background-color: #69B9A3 !important;
+    transform: scale(1.03);
+    transition: 0.15s ease-in-out;
+}
+
+/* 入力欄 */
+input, select, textarea {
+    font-family: 'Zen Kaku Gothic New', sans-serif !important;
+    border-radius: 8px !important;
+}
+
+/* ラジオ・セレクト */
+.stRadio label, .stSelectbox label {
+    font-family: 'Zen Kaku Gothic New', sans-serif !important;
+    font-size: 1rem;
+}
+</style>
+"""
+
 
 # ========= 音声特徴量の抽出 =========
 def extract_voice_features(file_path: str) -> dict:
@@ -301,6 +377,11 @@ def explain_traits(traits: dict) -> str:
 
 # ========= Streamlit UI =========
 def main():
+
+    # CSS記述のデザインの適用
+    st.markdown(CUTE_CSS, unsafe_allow_html=True)
+
+
     st.set_page_config(page_title="声でわかるあなたの変態度", page_icon="🦄", layout="centered")
 
     st.title("🦄 声でわかるあなたの変態度（アブノーマル度）")
