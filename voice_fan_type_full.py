@@ -533,7 +533,7 @@ def main():
     )
 
     st.subheader("性別を選択してください")
-    gender = st.radio("あなたの性別は？", ["男性", "女性"], horizontal=True)
+    gender = st.radio("あなたの性別は？", ["男性", "女性"], index=1, horizontal=True)
 
     st.markdown("---")
     st.subheader("1. 声の録音")
