@@ -1513,26 +1513,28 @@ def main():
     gender = st.selectbox("性別（ざっくりでOKです）", ["女性", "男性", "その他・ひみつ"])
 
     st.write(
-        "普段どおりの話し方で、30秒〜1分ほど録音した音声ファイルをアップロードしてください。\n"
+        "普段どおりの話し方で、30秒〜1分ほどの声を録音してください。\n"
         "今日あったことや、最近考えていることなど、内容はなんでもOKです。"
     )
 
-    uploaded = st.file_uploader(
-        "対応形式: WAV / MP3 / OGG / M4A（環境による）",
-        type=["wav", "mp3", "ogg", "m4a"],
-    )
+    st.markdown('<div class="pretty-card">', unsafe_allow_html=True)
+    st.subheader("2. 声の録音")
+    wav_audio_data = st.audio_input("🎤 録音してください")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    if uploaded is None:
-        st.info("性別を選び、音声ファイルをアップロードすると診断ボタンが表示されます。")
+    if wav_audio_data is None:
+        st.info("性別を選び、音声を録音すると診断ボタンが表示されます。")
         return
 
-    suffix = Path(uploaded.name).suffix or ".wav"
-    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-        tmp.write(uploaded.read())
-        tmp_path = tmp.name
+    # 一時ファイル
+    audio_bytes = wav_audio_data.getbuffer()
+    suffix = Path(wav_audio_data.name).suffix if wav_audio_data.name else ".wav"
 
-    st.markdown("#### 音声プレビュー")
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+        tmp.write(audio_bytes)
+        tmp_path = tmp.name
     st.audio(tmp_path)
+
 
     if st.button("来世の適職を診断する"):
         with st.spinner("あなたの声から、来世の世界とお仕事、生活や恋愛まで細かく読み取っています..."):
