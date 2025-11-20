@@ -606,10 +606,10 @@ def main():
     st.write("※30秒〜1分程度の“ふつうに話している声”がおすすめです。起きてから1時間以上経ったあとの、普通の状態で話しかけてください。")
 
     # 🔹 ここだけ voice_age_checker.py と同じスタイルに
-    wav_audio_data = st.audio_input("🎤 録音するか、音声ファイルを選択してください")
+    wav_audio_data = st.audio_input("🎤 声を録音してください")
 
     if wav_audio_data is None:
-        st.info("音声を録音（またはファイルを選択）すると分析が始まります。")
+        st.info("音声を録音すると分析が始まります。")
         return
 
     # 一時ファイルに保存
