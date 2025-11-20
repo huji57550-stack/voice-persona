@@ -637,50 +637,7 @@ def main():
             day_plan = suggest_day_plan(scores)
         except Exception as e:
             st.error(f"分析中にエラーが発生しました: {e}")
-            returndef main():
-    st.set_page_config(page_title="声でわかるあなたの今日", page_icon="🎙", layout="centered")
-
-    st.title("🎙 声でわかるあなたの今日")
-    st.caption("声のざっくり特徴から、今日のコンディションと “やる・やめる・整える” をゆるく占うツールです。")
-
-    st.markdown("---")
-    st.subheader("1. 声を録音 / 選択")
-    st.write("※30秒〜1分程度の“ふつうに話している声”がおすすめです。起きてから1時間以上経ったあとの、普通の状態で話しかけてください。")
-
-    # 🔹 ここだけ voice_age_checker.py と同じスタイルに
-    wav_audio_data = st.audio_input("🎤 録音するか、音声ファイルを選択してください")
-
-    if wav_audio_data is None:
-        st.info("音声を録音（またはファイルを選択）すると分析が始まります。")
-        return
-
-    # 一時ファイルに保存
-    audio_bytes = wav_audio_data.getbuffer()
-    suffix = Path(wav_audio_data.name).suffix if wav_audio_data.name else ".wav"
-
-    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-        tmp.write(audio_bytes)
-        tmp_path = tmp.name
-
-    st.markdown("#### 音声プレビュー")
-    st.audio(tmp_path)
-
-    with st.spinner("声を分析しています..."):
-        try:
-            features = extract_voice_features(tmp_path)
-            scores = score_from_features(features)
-            condition_text = describe_condition(scores)
-            activities = judge_activity(scores)
-            lucky = pick_lucky_item(scores)
-
-            fashion = suggest_fashion(scores)
-            lunch = suggest_lunch(scores)
-            snack = suggest_snack(scores)
-            day_plan = suggest_day_plan(scores)
-        except Exception as e:
-            st.error(f"分析中にエラーが発生しました: {e}")
             return
-
 
 
         st.markdown("---")
