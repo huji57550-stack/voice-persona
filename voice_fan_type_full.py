@@ -218,12 +218,6 @@ def score_voice_traits(features: dict) -> dict:
     }
 
 
-ご提示いただいた、classify_fan_types 関数のロジック（メインタイプ、サブタイプ、体格・体質、恋愛シチュエーション）について、分岐を細分化し、記述をより詳細に修正しました。
-
-特に、ビッグ・ファイブ特性(ext, agr, con, sta, ope) を活用して、各タイプの説明をより複合的で具体的にしています。
-
-修正版コード: classify_fan_types 関数 🛠️
-Python
 
 # ========= 「あなたの声が好きな人」タイプ判定（＋体格＋恋愛シチュ） (最終修正) =========
 def classify_fan_types(traits: dict, big_five_scores: dict, gender: str) -> dict:
