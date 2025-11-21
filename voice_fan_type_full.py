@@ -779,6 +779,8 @@ def main():
     st.set_page_config(page_title="あなたの声がささる人", page_icon="🎧", layout="centered")
 
     st.title("🎧 あなたの声が刺さる人")
+    st.write("Ver.1.1")
+
     st.caption(
         "声のテンション・安定感・明るさなどから、"
         "“どんな人があなたの声にハマりやすいか”をざっくり診断するエンタメツールです。"
